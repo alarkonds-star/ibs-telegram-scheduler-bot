@@ -1,3 +1,4 @@
+import os
 import logging
 from telegram import Bot, Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
@@ -6,9 +7,11 @@ from datetime import datetime
 import pytz
 
 # ==== CONFIG ====
-BOT_TOKEN = "7720306254:AAFzU60b0fAh5Zl91SBg7jw6Pe4M2to-pnk"
+BOT_TOKEN = os.getenv("BOT_TOKEN")  # Loaded securely from Render
 CHANNEL_ID = "@IBS_KSA"  # Example: @IbsImplants
 TIMEZONE = "Asia/Riyadh"
+# ================
+
 # ================
 
 logging.basicConfig(level=logging.INFO)
@@ -68,3 +71,4 @@ app.add_handler(CommandHandler("message", message))
 
 print("Bot running...")
 app.run_polling()
+
